@@ -25,6 +25,7 @@
         <module>openai</module>
         <module>ollama</module>
         <module>multimodel</module>
+        <module>messageRole</module>
     </modules>
 
     <!-- Central dependency management -->
