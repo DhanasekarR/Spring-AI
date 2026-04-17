@@ -1,5 +1,7 @@
 package com.dsr.messagerole.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class ChatController {
 
+    Logger logger = LoggerFactory.getLogger(ChatController.class);
+
     private final ChatClient chatClient;
 
     public ChatController(ChatClient.Builder chatClientBuilder) {
@@ -18,7 +22,7 @@ public class ChatController {
 
     @GetMapping("/openai/chat")
     public String openAiChat(@RequestParam("message") String message) {
-        return chatClient
+        String response = chatClient
                 .prompt()
                 .system("""
                         You are an internal HR assistant. Your role is to help
@@ -30,5 +34,7 @@ public class ChatController {
                         """)
                 .user(message)
                 .call().content();
+        logger.info("Chat Response: {}",response);
+        return response;
     }
 }
