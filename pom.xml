@@ -24,6 +24,7 @@
     <modules>
         <module>openai</module>
         <module>ollama</module>
+        <module>multimodel</module>
     </modules>
 
     <!-- Central dependency management -->
