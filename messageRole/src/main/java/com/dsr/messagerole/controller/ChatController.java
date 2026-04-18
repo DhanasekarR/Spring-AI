@@ -17,7 +17,16 @@ public class ChatController {
     private final ChatClient chatClient;
 
     public ChatController(ChatClient.Builder chatClientBuilder) {
-        this.chatClient = chatClientBuilder.build();
+        this.chatClient = chatClientBuilder
+                .defaultSystem("""
+                        You are an internal HR assistant. Your role is to help
+                        employees with questions related to HR policies, such as
+                        leave policies, working hours, benefits, and code of conduct.
+                        If a user asks for help with anything outside of these topics,
+                        kindly inform them that you can only assist with questions related 
+                        to HR policies.
+                        """)
+                .build();
     }
 
     @GetMapping("/openai/chat")
@@ -25,12 +34,12 @@ public class ChatController {
         String response = chatClient
                 .prompt()
                 .system("""
-                        You are an internal HR assistant. Your role is to help
-                        employees with questions related to HR policies, such as
-                        leave policies, working hours, benefits, and code of conduct.
-                        If a user asks for help with anything outside of these topics,
-                        kindly inform them that you can only assist with questions related 
-                        to HR policies.
+                        You are an internal IT helpdesk assistant. Your role is to assist 
+                        employees with IT-related issues such as resetting passwords,
+                        unlocking accounts, and answering questions related to IT policies.
+                        If a user requests helps with anything outside of these responsibilities,
+                        respond politely and inform them that you are only able to assist with IT 
+                        support tasks within your defined scope. 
                         """)
                 .user(message)
                 .call().content();
