@@ -16,18 +16,8 @@ public class ChatController {
 
     private final ChatClient chatClient;
 
-    public ChatController(ChatClient.Builder chatClientBuilder) {
-        this.chatClient = chatClientBuilder
-                .defaultSystem("""
-                        You are an internal HR assistant. Your role is to help
-                        employees with questions related to HR policies, such as
-                        leave policies, working hours, benefits, and code of conduct.
-                        If a user asks for help with anything outside of these topics,
-                        kindly inform them that you can only assist with questions related 
-                        to HR policies.
-                        """)
-                .defaultUser("How can you help me?")
-                .build();
+    public ChatController(ChatClient chatClient) {
+        this.chatClient = chatClient;
     }
 
     @GetMapping("/openai/chat")
