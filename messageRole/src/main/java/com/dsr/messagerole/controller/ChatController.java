@@ -1,5 +1,6 @@
 package com.dsr.messagerole.controller;
 
+import com.dsr.messagerole.advisors.TokenUsageAuditAdvisor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.client.ChatClient;
@@ -24,6 +25,7 @@ public class ChatController {
     public String openAiChat(@RequestParam("message") String message) {
         String response = chatClient
                 .prompt()
+//                .advisors(new TokenUsageAuditAdvisor())
                 .system("""
                         You are an internal IT helpdesk assistant. Your role is to assist
                         employees with IT-related issues such as resetting passwords,
