@@ -27,6 +27,7 @@
         <module>multimodel</module>
         <module>messageRole</module>
         <module>JavaStreams</module>
+        <module>chatMemory</module>
     </modules>
 
     <!-- Central dependency management -->
