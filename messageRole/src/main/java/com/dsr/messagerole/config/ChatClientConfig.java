@@ -16,7 +16,7 @@ public class ChatClientConfig {
     public ChatClient chatClient(ChatClient.Builder chatClientBuilder) {
         ChatOptions chatOptions = ChatOptions.builder()
                 .model("gpt-4.1-mini")
-                .maxTokens(10)
+                .maxTokens(1000)
                 .temperature(0.8)
                 .build();
 
